@@ -1,30 +1,22 @@
-terraform {
-  backend "remote" {
-    organization = "devops-solution"
-    
-    workspaces {
-      name = "workspace-devops-solution"
-    }
-  }
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.0"
-    }
-  }
-}
-
 provider "aws" {
-  region = "us-east-2"
+  region = var.aws_region
 }
 
-resource "aws_instance" "web01" {
-  ami           = "ami-08962a4068733a2b6"
-  instance_type = "t2.nano"
+provider "random" {}
 
-  tags = {
-    Name    = var.tag-name
-    Sistema = var.tag-sistema
-    Tipo    = var.tag-tipo
+resource "random_pet" "table_name" {
+
+}
+
+resource "aws_dynamodb_table" "tfc_exemple_table" {
+  name = "${var.db_table_name}-${random_pet.table_name.id}"
+
+  read_capacity  = var.db_read_capacity
+  write_capacity = var.db_write_capacity
+  hash_key       = "UUID"
+
+  attribute {
+    name = "UUID"
+    type = "S"
   }
 }

@@ -1,17 +1,23 @@
-variable "tag-name" {
-  description = "Tag nome do server"
-  default     = "Web01"
+variable "aws_region" {
   type        = string
+  default     = "us-east-2"
+  description = "Region the deployn in aws"
 }
 
-variable "tag-sistema" {
-  description = "Tag nome do sistema"
-  default     = "Saver"
+variable "db_table_name" {
   type        = string
+  default     = "terraform-learn"
+  description = "Name the base dynamodb"
 }
 
-variable "tag-tipo" {
-  description = "Tag tipo producao/homologacao"
-  default     = "Homologacao"
-  type        = string
+variable "db_read_capacity" {
+  type        = number
+  default     = 1
+  description = "Capacity the read in configuration dynamodb"
+}
+
+variable "db_write_capacity" {
+  type        = number
+  default     = 1
+  description = "Capacity the write in configuration dynamodb"
 }
