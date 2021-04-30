@@ -12,12 +12,12 @@ variable "db_table_name" {
 
 variable "db_read_capacity" {
   type        = number
-  default     = 1
+  default     = 2
   description = "Capacity the read in configuration dynamodb"
 }
 
 variable "db_write_capacity" {
   type        = number
-  default     = 1
+  default     = 2
   description = "Capacity the write in configuration dynamodb"
 }
